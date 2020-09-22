@@ -17,7 +17,7 @@ const App = ({ signInWithGoogle, signInWithGithub, signOut, user }) => {
 
   return (
     <>
-      <header>
+      <header className="header">
         <h2>TypeMD</h2>
         {user && (
           <div className="user-profile">
