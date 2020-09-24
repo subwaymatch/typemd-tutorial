@@ -44,24 +44,6 @@ body {
   }
 }
 
-@media (min-width: 2400px) {
-  html {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 3000px) {
-  html {
-    font-size: 2.5rem;
-  }
-}
-
-@media (min-width: 3400px) {
-  html {
-    font-size: 3rem;
-  }
-}
-
 body {
   width: 60%;
   margin: 5% 20%;

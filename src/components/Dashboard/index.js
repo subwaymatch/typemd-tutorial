@@ -16,14 +16,16 @@ const getUserFiles = async (userId) => {
       .collection('files')
       .get();
 
-    const userFiles = snapshot.map((file) => {
+    const userFiles = [];
+
+    snapshot.forEach((file) => {
       let { name, content } = file.data();
 
-      return {
+      userFiles.push({
         id: file.id,
         name,
         content,
-      };
+      });
     });
 
     return userFiles;
@@ -66,8 +68,11 @@ const Dashboard = ({ user, userId }) => {
     }
   }, [user]);
 
-  if (error) return <p>Error loading data!</p>;
-  else if (!data) return <p>Loading...</p>;
+  if (error) {
+    console.error(error);
+
+    return <p>Error loading data!</p>;
+  } else if (!data) return <p>Loading...</p>;
   else {
     return (
       <div>
@@ -97,7 +102,7 @@ const Dashboard = ({ user, userId }) => {
         <ul className="files-list">
           {data.map((file) => (
             <li key={file.id} className="file">
-              <Link to={`/user/$userId}/editor/${file.id}`} className="link">
+              <Link to={`/user/${userId}/editor/${file.id}`} className="link">
                 {file.name}
               </Link>
               <button
