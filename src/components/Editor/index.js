@@ -71,16 +71,10 @@ const Editor = ({ user, userId, fileId }) => {
           name: file.name,
         });
 
-      console.log(`doc`);
-
       const uploadTask = await store
         .ref()
-        // .child(`users/${userId}/${doc.id}-${file.name}`)
-        .child(`images/${file.name}`)
+        .child(`users/${userId}/${doc.id}-${file.name}`)
         .put(file);
-
-      // return uploadTask.ref.getDownloadURL();
-      console.log(uploadTask.ref.getDownloadURL());
 
       return uploadTask.ref.getDownloadURL();
     } else {
