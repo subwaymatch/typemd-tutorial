@@ -62,7 +62,7 @@ const Editor = ({ user, userId, fileId }) => {
   };
 
   const uploadImage = async (file) => {
-    if (!file.size >= 1000000) {
+    if (file.size <= 1000000) {
       const doc = await db
         .collection('users')
         .doc(userId)
@@ -71,12 +71,20 @@ const Editor = ({ user, userId, fileId }) => {
           name: file.name,
         });
 
+      console.log(`doc`);
+
       const uploadTask = await store
         .ref()
-        .child(`users/${userId}/${doc.id}-${file.name}`)
+        // .child(`users/${userId}/${doc.id}-${file.name}`)
+        .child(`images/${file.name}`)
         .put(file);
 
+      // return uploadTask.ref.getDownloadURL();
+      console.log(uploadTask.ref.getDownloadURL());
+
       return uploadTask.ref.getDownloadURL();
+    } else {
+      console.log('File size too large!');
     }
   };
 

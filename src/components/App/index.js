@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from '@reach/router';
+import { Router, Link } from '@reach/router';
 
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { firebaseAppAuth, providers } from 'lib/firebase';
@@ -18,7 +18,9 @@ const App = ({ signInWithGoogle, signInWithGithub, signOut, user }) => {
   return (
     <>
       <header className="header">
-        <h2>TypeMD</h2>
+        <Link to="/">
+          <h2>TypeMD</h2>
+        </Link>
         {user && (
           <div className="user-profile">
             <a
